@@ -1,0 +1,47 @@
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+workspace:
+  base: /go
+  path: src/github.com/devops-israel/global-forward-auth
+
+steps:
+- name: build
+  pull: always
+  image: golang:1.11
+  commands:
+  - "apt-get update && apt-get install -y upx"
+  - mkdir -p /go/bin
+  - mkdir -p prod
+  - mkdir -p dist
+  - "curl https://glide.sh/get | sh"
+  - go get github.com/mitchellh/gox
+  - go get github.com/tcnksm/ghr
+  - glide install
+  - glide update
+  - gox -osarch-list
+  - "CGO_ENABLED=0 gox -ldflags \"-s -w\" -output \"dist/vault-get-{{.OS}}-{{.Arch}}\""
+  - upx --help
+  - upx -9 --best dist/vault-get-linux-386
+  - upx -9 --best dist/vault-get-linux-amd64
+  - upx -9 --best dist/vault-get-linux-arm
+  - ghr -t $GITHUB_TOKEN --replace -u devops-israel -r vault-get v$VERSION dist/
+  environment:
+    VERSION: 1.0.0
+    GITHUB_TOKEN:
+      from_secret: github_token
+  when:
+    event:
+    - tag
+
+---
+kind: secret
+name: github_token
+get:
+  path: drone/data/github-devops
+  name: token
