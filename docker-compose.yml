@@ -1,9 +1,9 @@
-vault-get:
+global-forward-auth:
   build: .
   command: tail -f /dev/null
-  dockerfile: Dockerfile.drone
+  dockerfile: Dockerfile.development
   volumes:
-    - .:/go/src/vault-get/
+    - .:/go/src/github.com/devops-israel/global-forward-auth
   ports:
     - "9292:9292"
     - "2345:2345"

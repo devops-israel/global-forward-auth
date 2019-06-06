@@ -25,6 +25,7 @@ Use case: use your organization Google email or Githhub user to have the option 
 3. Iris - https://github.com/kataras/iris
 4. Viper - https://github.com/spf13/viper
 5. JWT - https://github.com/dgrijalva/jwt-go - used to sign the cookie value we save.
+6. Cobra - https://github.com/spf13/cobra
 
 
 **Development Requirements**:
