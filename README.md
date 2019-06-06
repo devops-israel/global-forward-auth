@@ -1,6 +1,9 @@
 ## global-forward -auth
 
+We are using [Drone CI](https://drone.io/) to build our project:
+
 [![Build Status](https://cloud.drone.io/api/badges/devops-israel/global-forward-auth/status.svg)](https://cloud.drone.io/devops-israel/global-forward-auth)
+
 
 A forward authentication service that provides Google and Github OAuth based login and authentication for Traefik and Nginx reverse proxies.
 inspired by [traefik-forward-auth](https://github.com/thomseddon/traefik-forward-auth).
