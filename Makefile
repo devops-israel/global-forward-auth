@@ -2,17 +2,10 @@ clean:
 	go clean -i ./...
 
 deps:
-	glide install
-	glide update
-
-build_inside_docker:
-	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o vault-get .
-
-build_osx:
-	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo -o vault-get .
+	dep ensure
 
 build:
-	docker-compose build
+	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o global-forward-auth .
 
-serve:
-	docker-compose up
+build_osx:
+	CGO_ENABLED=0 GOOS=darwin go build -a -installsuffix cgo -o global-forward-auth .

@@ -5,7 +5,7 @@ global-forward-auth:
   volumes:
     - .:/go/src/github.com/devops-israel/global-forward-auth
   ports:
-    - "9292:9292"
+    - "9293:9292"
     - "2345:2345"
   expose:
     - "2345"
