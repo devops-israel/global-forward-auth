@@ -55,8 +55,6 @@ func Execute() {
 	runCmd.Flags().BoolP("client-id", "", false, "Google/Github client ID")
 	runCmd.Flags().BoolP("client-secret", "", false, "Google/Github client secret")
 
-	// runCmd.Flags().Parse()
-	// viper.BindPFlags(runCmd.Flags().CommandLine)
 	viper.BindPFlags(runCmd.Flags())
 
 	rootCmd.AddCommand(versionCmd)
